@@ -37,5 +37,16 @@ public class RegisterService
 		
 		
 	}
+	
+	public boolean deleteuser(String id) 
+	{
+		Optional<RegisterModel> reg=Repo.findById(id);
+		if(reg.isPresent()) 
+		{
+			Repo.deleteById(id);
+			return true;
+		}
+		return false;
+	}
 
 }

@@ -7,17 +7,28 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class RegisterModel 
 {
 	@Id
+	private String id;
 	private String username;
 	private String email;
 	private Integer mobilenumber;
 	private String password;
 	
-	public RegisterModel(String username, String email, Integer mobilenumber, String password) {
+
+	public RegisterModel(String id, String username, String email, Integer mobilenumber, String password) {
 		super();
+		this.id = id;
 		this.username = username;
 		this.email = email;
 		this.mobilenumber = mobilenumber;
 		this.password = password;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getUsername() {
@@ -52,10 +63,11 @@ public class RegisterModel
 		this.password = password;
 	}
 
+
 	@Override
 	public String toString() {
-		return "RegisterModel [username=" + username + ", email=" + email + ", mobilenumber=" + mobilenumber
-				+ ", password=" + password + "]";
+		return "RegisterModel [id=" + id + ", username=" + username + ", email=" + email + ", mobilenumber="
+				+ mobilenumber + ", password=" + password + "]";
 	}
 	
 
