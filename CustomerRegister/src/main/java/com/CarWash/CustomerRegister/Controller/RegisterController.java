@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.CarWash.CustomerRegister.Model.RegisterModel;
 import com.CarWash.CustomerRegister.Service.RegisterService;
 
+@CrossOrigin(origins = "*")
 @RestController
-@CrossOrigin("*")
-@RequestMapping("/customerregister")
+@RequestMapping("/customer")
 public class RegisterController 
 {
 	
@@ -35,7 +35,7 @@ public class RegisterController
 	}
 	
 	@PostMapping("/login")
-	public RegisterModel loginValidate(@RequestBody RegisterModel customer) {
+	public boolean loginValidate(@RequestBody RegisterModel customer) {
 		System.out.println(customer);
 		return cuservice.loginValidate(customer);
 		

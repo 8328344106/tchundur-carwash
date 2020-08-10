@@ -24,16 +24,18 @@ public class RegisterService
 		return Repo.save(c);
 	}
 	
-	public RegisterModel loginValidate(RegisterModel customer) {
-		Optional<RegisterModel> available=Repo.findById(customer.getUsername());
-		if(available.isPresent()) {
-			RegisterModel isThere= available.get();
-			if(isThere.getPassword().contentEquals(customer.getPassword())){
-				return isThere;
+	public boolean loginValidate(RegisterModel customer) 
+	{
+		
+		List<RegisterModel> all=Repo.findAll();
+		for (RegisterModel l: all)
+		{
+			if(l.getUsername().contentEquals(customer.getUsername())&&l.getPassword().contentEquals(customer.getPassword()))
+			{
+				return true;
 			}
 		}
-		
-		return null;
+		return false;
 		
 		
 	}

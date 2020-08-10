@@ -10,11 +10,19 @@ public class RegisterModel
 	private String id;
 	private String username;
 	private String email;
-	private Integer mobilenumber;
+	private long mobilenumber;
 	private String password;
 	
 
-	public RegisterModel(String id, String username, String email, Integer mobilenumber, String password) {
+//	public RegisterModel(String username, String email, long mobilenumber, String password) {
+//		super();
+//		this.username = username;
+//		this.email = email;
+//		this.mobilenumber = mobilenumber;
+//		this.password = password;
+//	}
+
+	public RegisterModel(String id, String username, String email, long mobilenumber, String password) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -47,11 +55,11 @@ public class RegisterModel
 		this.email = email;
 	}
 
-	public Integer getMobilenumber() {
+	public long getMobilenumber() {
 		return mobilenumber;
 	}
 
-	public void setMobilenumber(Integer mobilenumber) {
+	public void setMobilenumber(long mobilenumber) {
 		this.mobilenumber = mobilenumber;
 	}
 

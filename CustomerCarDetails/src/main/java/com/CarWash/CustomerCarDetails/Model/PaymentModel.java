@@ -11,19 +11,19 @@ public class PaymentModel
 	private String username;
 	private String cardholdername;
 	private long cardnumber;
-	private Integer expmon;
-	private Integer expyear;
+	private String expmon;
 	private Integer cvv;
 	
-	public PaymentModel(String id, String username, String cardholdername, long cardnumber, Integer expmon,
-			Integer expyear, Integer cvv) {
+	
+
+	public PaymentModel(String id, String username, String cardholdername, long cardnumber, String expmon,
+			Integer cvv) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.cardholdername = cardholdername;
 		this.cardnumber = cardnumber;
 		this.expmon = expmon;
-		this.expyear = expyear;
 		this.cvv = cvv;
 	}
 
@@ -59,21 +59,14 @@ public class PaymentModel
 		this.cardnumber = cardnumber;
 	}
 
-	public Integer getExpmon() {
+	public String getExpmon() {
 		return expmon;
 	}
 
-	public void setExpmon(Integer expmon) {
+	public void setExpmon(String expmon) {
 		this.expmon = expmon;
 	}
 
-	public Integer getExpyear() {
-		return expyear;
-	}
-
-	public void setExpyear(Integer expyear) {
-		this.expyear = expyear;
-	}
 
 	public Integer getCvv() {
 		return cvv;
@@ -86,7 +79,7 @@ public class PaymentModel
 	@Override
 	public String toString() {
 		return "PaymentModel [id=" + id + ", username=" + username + ", cardholdername=" + cardholdername
-				+ ", cardnumber=" + cardnumber + ", expmon=" + expmon + ", expyear=" + expyear + ", cvv=" + cvv + "]";
+				+ ", cardnumber=" + cardnumber + ", expmon=" + expmon + ", cvv=" + cvv + "]";
 	}
 	
 	
