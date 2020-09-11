@@ -1,5 +1,6 @@
 package com.CarWash.CustomerCarDetails.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +20,33 @@ public class PaymentService
 	public List<PaymentModel> getallpayment()
 	{
 		return payRepo.findAll();
+	}
+	
+	public List<PaymentModel> getpaymentbyuser(String user)
+	{
+		List<PaymentModel> all = payRepo.findAll();
+		List<PaymentModel> pay = new ArrayList<PaymentModel>();
+		for(PaymentModel l : all)
+		{
+			if(l.getUsername().contentEquals(user))
+			{
+				pay.add(l);
+			}
+		}
+		return pay;
+	}
+	
+	public PaymentModel getpaymentbyid(String id)
+	{
+		List<PaymentModel> all = payRepo.findAll();
+		for(PaymentModel l : all)
+		{
+			if(l.getId().contentEquals(id))
+			{
+				return l;
+			}
+		}
+		return null;
 	}
 	
 	public PaymentModel addpayment(PaymentModel p) 

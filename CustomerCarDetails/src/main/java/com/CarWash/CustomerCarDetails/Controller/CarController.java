@@ -1,7 +1,6 @@
 package com.CarWash.CustomerCarDetails.Controller;
 
 import java.io.IOException;
-import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +22,7 @@ import org.springframework.core.io.ByteArrayResource;
 import com.CarWash.CustomerCarDetails.Model.CarModel;
 import com.CarWash.CustomerCarDetails.Repository.CarRepository;
 import com.CarWash.CustomerCarDetails.Service.CarService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 @CrossOrigin("*")
@@ -42,16 +42,25 @@ public class CarController
 		return carser.getdetails();
 	}
 	
-	@PostMapping("/addcardetails")
-	public CarModel addcardetails(@RequestBody CarModel c)
+	@GetMapping("/getbyuser/{user}")
+	public List<CarModel> getbyuser(@PathVariable String user)
 	{
-		return carser.addcardetails(c);
+		return carser.getbyuser(user);
 	}
 	
-	@PostMapping("/addfiledetails/{id}")
-	public void addfiledetails(@PathVariable String id,@RequestParam("file") MultipartFile file) throws IOException {
-		System.out.println("file"+file);
-		carser.addfiledetails(id, file);
+	@GetMapping("/getcarbyid/{id}")
+	public CarModel getcarbyid(@PathVariable String id)
+	{
+		return carser.getcarbyid(id);
+	}
+	
+	@PostMapping("/addfiledetails")
+	public CarModel addfiledetails(@RequestParam("car") String car,@RequestParam("file") MultipartFile file) throws IOException {
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		CarModel c = objectMapper.readValue(car, CarModel.class);
+		System.out.println(c);
+		return carser.addfiledetails(c, file);
 	}
 	
 	@GetMapping(value= "/getimage/{id}")

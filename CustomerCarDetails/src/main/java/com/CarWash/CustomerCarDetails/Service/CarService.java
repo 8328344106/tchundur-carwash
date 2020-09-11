@@ -1,6 +1,7 @@
 package com.CarWash.CustomerCarDetails.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
@@ -29,6 +30,34 @@ public class CarService
 		return carRepo.findAll();
 	}
 	
+	public List<CarModel> getbyuser(String user)
+	{
+		List<CarModel> usercar = new ArrayList<CarModel>();
+		List<CarModel> all = carRepo.findAll();
+		for(CarModel l : all)
+		{
+			if(l.getUsername().contentEquals(user))
+			{
+				usercar.add(l);
+			}
+		}
+		return usercar;
+	}
+	
+	public CarModel getcarbyid(String id)
+	{
+		List<CarModel> car = carRepo.findAll();
+		for(CarModel c : car)
+		{
+			if(c.getId().contentEquals(id))
+			{
+				return c;
+			}
+		}
+		return null;
+	}
+	
+	
 	public CarModel addcardetails(CarModel c)
 	{
 		return carRepo.save(c);
@@ -43,31 +72,19 @@ public class CarService
 		{
 			if(c.getId().contentEquals(id))
 			{
-//				String imagename= c.getImagename();
-//				 document=c.getImage();
-//				 encodess=Base64.getEncoder().encodeToString(document);		
-//				 image="data:image/"+ imagename+";Base64,"+encodess;
 				return c;
-				// name=c.getImagename()+"_"+c.getImagename();		
 			}
 		}	
 	   return car;
 	}
 	
-	public void addfiledetails(String id,MultipartFile file) throws IOException
+	public CarModel addfiledetails(CarModel c,MultipartFile file) throws IOException
 	{
-		List<CarModel> allCer=carRepo.findAll();
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-        System.out.println(fileName);
-		for(CarModel c:allCer)
-		{
-			if(c.getId().contentEquals(id))
-			{
+       
 				c.setImage(file.getBytes());
 				c.setImagename(fileName);
-				carRepo.save(c);
-			}
-		}
+				return carRepo.save(c);
 	}
 	
 

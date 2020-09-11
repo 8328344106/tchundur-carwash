@@ -29,6 +29,19 @@ public class PaymentController
 	{
 		return payservice.getallpayment();
 	}
+	
+	@GetMapping("/getpaymentbyuser/{user}")
+	public List<PaymentModel> getpaymentbyuser(@PathVariable String user)
+	{
+		return payservice.getpaymentbyuser(user);
+	}
+	
+	@GetMapping("/getpaymentbyid/{id}")
+	public PaymentModel getpaymentbyid(@PathVariable String id)
+	{
+		return payservice.getpaymentbyid(id);
+	}
+	
 	@PostMapping("/addpayment")
 	public PaymentModel addpayment(@RequestBody PaymentModel p)
 	{
